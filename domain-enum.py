@@ -81,7 +81,7 @@ def banner():
  print("   #     #    #    #     # #     # #     # #     # #    ##")
  print("   ######     #     #####   #####   #####  #     # #     #")
  print()
- print("                                       Thanks to Sublist3r")
+ print("                                               Version 2.0")
  print()
 def parser_error(errmsg):
     banner()
