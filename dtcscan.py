@@ -1,4 +1,3 @@
-
 import os
 import readline
 import requests
@@ -109,7 +108,7 @@ os.remove("domain-enum.py")
 time.sleep(2)
 
 prGreen("==================================================================================================")
-prYellow("[+] Total Digital Asset Finding for " + (url) + " by Valid Massive Domain & IP  Enumeration:   ")
+prYellow("[+] Total Digital Asset Finding for " + (url) + " by Valid Massive Domain & IP Enumeration:   ")
 prGreen("==================================================================================================")
 print("")
 
@@ -135,16 +134,18 @@ os.system(r"cat parsing.txt |cut -d ' ' -f 3 > valid-ip.txt")
 
 #Parsing as Valid Domains
 os.system(r"cat parsing.txt |cut -d ' ' -f 1 > valid-domains.txt")
+print("")
 
+#Count IPs for ASN
+count = len(open('valid-domains.txt').readlines())
+print "[+] Total Valid Domains & IPs  Found :",(count)
 print("")
-prYellow("   ===> Valid ip Saved as valid-ip.txt")
-prYellow("   ===> Valid domains Saved as valid-domains.txt")
-print("")
+
 
 #Get ip for ASN
 inasn = open('data.txt', 'w')
 getasn = socket.gethostbyname (url)
-os.system("service tor restart")
+#os.system("service tor restart")
 print("")
 
 
@@ -181,18 +182,18 @@ os.system(who)
 print("")
 
 prGreen("==============================================================================")
-prYellow("[+] Total Digital Asset Finding for " + (url) + " by Massive Enumeration:   ")
+prYellow("[+] Additional Informations for " + (url) + ": ")
 prGreen("==============================================================================")
 
-
-#GET CIDR from ASN
-cidrr =  open('asn.txt', 'r')
-cid = cidrr.read()
-cidr = "proxychains curl https://api.hackertarget.com/aslookup/?q=AS" + (cid) + " > cidr.txt" + " 2>/dev/null"
-os.system(cidr)
 print("")
+shodan = "shodan host " + (getasn)
+os.system(shodan)
 
-assn2 = "cat cidr.txt |sed -e '1,2d' > cidr2.txt"
-os.system(assn2)
-os.system("cat cidr2.txt")
-print("")
+#remove files
+os.remove("output.txt"),
+os.remove("preasn.txt")
+os.remove("preasn2.txt")
+os.remove("asn.txt")
+os.remove("data.txt")
+os.remove("parsing.txt")
+os.remove("valid-ip.txt")
